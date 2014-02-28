@@ -22,7 +22,7 @@ try:
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
-matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+#matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
 
 Y=[0]*7
 for i in range(7):
@@ -136,7 +136,7 @@ class Ui_Form(object):
         QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.MostrarMem)
         QtCore.QObject.connect(self.pushButton_3, QtCore.SIGNAL(_fromUtf8("clicked()")), self.CalcPor)
         QtCore.QObject.connect(self.pushButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.GenMem)
-        #~ QtCore.QObject.connect(self.pushButton_4, QtCore.SIGNAL(_fromUtf8("clicked()")), self.Busca)
+        QtCore.QObject.connect(self.pushButton_4, QtCore.SIGNAL(_fromUtf8("clicked()")), self.Busca)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -329,7 +329,40 @@ class Ui_Form(object):
 		self.textBrowser.append("%s %%" % str(cony5))
 		self.textBrowser.append("%s %%" % str(cony6))
 		self.textBrowser.append("%s %%" % str(cony7))
-    #~ def Busca(self):
+    def Busca(self):
+		#x = raw_input('Da los parametros de un animal: ')
+		x = str(_fromUtf8(self.lineEdit.text()))
+		x = np.array([ map ( int, x.split() ) ])
+		x = x.transpose()
+		clase = np.dot(memoria,x)
+		aux= clase.max()
+		for i in xrange(0, 7):
+		 if clase[i][0] == aux:
+		  clase [i][0] = 1
+		 elif clase[i][0] < aux:
+		  clase [i][0] = 0
+		clase = clase.transpose()
+		if np.all(clase == y7) == True:
+			self.textBrowser.append("pertenece a la clase 7")
+		 #print "pertenece a la clase 7"
+		elif np.all(clase == y6) == True:
+			self.textBrowser.append("pertenece a la clase 6")
+		 #print "pertenece a la clase 6"
+		elif np.all(clase == y5) == True:
+			self.textBrowser.append("pertenece a la clase 5")
+		 #print "pertenece a la clase 5"
+		elif np.all(clase == y4) == True:
+			self.textBrowser.append("pertenece a la clase 4")
+		 #print "pertenece a la clase 4"
+		elif np.all(clase == y3) == True:
+			self.textBrowser.append("pertenece a la clase 3")
+		 #print "pertenece a la clase 3"
+		elif np.all(clase == y2) == True:
+			self.textBrowser.append("pertenece a la clase 2")
+		 #print "pertenece a la clase 2"
+		elif np.all(clase == y1) == True:
+			self.textBrowser.append("pertenece a la clase 1")
+		 #print "pertenece a la clase 1"	
 		
 if __name__ == "__main__":
     import sys;
