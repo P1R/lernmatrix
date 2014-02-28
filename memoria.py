@@ -2,7 +2,7 @@ import numpy as np
 
 entradat = open("db.data", "r")
 dbanimales = np.array([ map( int, linea.split() ) for linea in entradat ])
-z = dbanimales 
+z = len(dbanimales) 
 print z
 entrada1 = open("xy1.data", "r")
 xy1 = np.array([ map( int, linea.split() ) for linea in entrada1 ])
@@ -188,10 +188,36 @@ for linea in entradat:
   elif clase[i][0] < aux:
    clase [i][0] = 0
  clase = clase.transpose()
- if np.all(clase == 7) == True:
+ if np.all(clase == y7) == True:
   cont += 1
   cony7 += 1  
 print cont, cony1, cony2, cony3, cony4, cony5, cony6, cony7
+
+x = raw_input('Da los parametros de un animal: ')
+x = np.array([ map ( int, x.split() ) ])
+x = x.transpose()
+clase = np.dot(memoria,x)
+aux= clase.max()
+for i in xrange(0, 7):
+ if clase[i][0] == aux:
+  clase [i][0] = 1
+ elif clase[i][0] < aux:
+  clase [i][0] = 0
+clase = clase.transpose()
+if np.all(clase == y7) == True:
+ print "pertenece a la clase 7"
+elif np.all(clase == y6) == True:
+ print "pertenece a la clase 6"
+elif np.all(clase == y5) == True:
+ print "pertenece a la clase 5"
+elif np.all(clase == y4) == True:
+ print "pertenece a la clase 4"
+elif np.all(clase == y3) == True:
+ print "pertenece a la clase 3"
+elif np.all(clase == y2) == True:
+ print "pertenece a la clase 2"
+elif np.all(clase == y1) == True:
+ print "pertenece a la clase 1"	
 
 
  

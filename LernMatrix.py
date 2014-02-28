@@ -36,7 +36,7 @@ class Model(QtCore.QAbstractTableModel):
     def rowCount(self, index=QtCore.QModelIndex()):
         return len(self.table)
     def columnCount(self, index=QtCore.QModelIndex()):
-        return 4
+        return len(self.table)
     def flags(self, index):
         return QtCore.Qt.ItemIsEditable | QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable
     def data(self, index, role):
