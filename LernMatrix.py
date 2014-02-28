@@ -26,14 +26,16 @@ except AttributeError:
 #Here is the matrix i want to show
 matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
 
-rows = "ABCD"
-choices = ['apple', 'orange', 'banana']
+#rows = "ABCD"
+#choices = ['apple', 'orange', 'banana']
 
 class Model(QtCore.QAbstractTableModel):
     def __init__(self):
         super(Model, self).__init__()
-        self.table = [[row, choices[0],choices[1], choices[2]] for row in rows]
+        #self.table = [[row, choices] for row in rows]
+        self.table = matrix
     def rowCount(self, index=QtCore.QModelIndex()):
+        print len(self.table)
         return len(self.table)
     def columnCount(self, index=QtCore.QModelIndex()):
         return len(self.table)
