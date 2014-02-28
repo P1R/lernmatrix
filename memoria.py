@@ -2,7 +2,7 @@ import numpy as np
 
 entradat = open("db.data", "r")
 dbanimales = np.array([ map( int, linea.split() ) for linea in entradat ])
-z = len(dbanimales) 
+z = dbanimales 
 print z
 entrada1 = open("xy1.data", "r")
 xy1 = np.array([ map( int, linea.split() ) for linea in entrada1 ])
