@@ -59,10 +59,10 @@ y3 = np.r_[0, 0, 1, 0, 0, 0, 0]
 y4 = np.r_[0, 0, 0, 1, 0, 0, 0]
 y5 = np.r_[0, 0, 0, 0, 1, 0, 0]
 y6 = np.r_[0, 0, 0, 0, 0, 1, 0]
-y7 = np.r_[0, 0, 0, 0, 0, 0, 1]
+y7 = np.r_[0, 0, 0, 0, 0, 0, 1] 
 
-#~ entradam = open("memoria.data", "r")
-#~ memoria = np.array([ map( int, linea.split() ) for linea in entradam ]) 
+entradam = open("memoria.data", "r")
+memoria = np.array([ map( int, linea.split() ) for linea in entradam ])
 
 class Model(QtCore.QAbstractTableModel):
     def __init__(self):
@@ -134,9 +134,9 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         Form.setWindowTitle(_translate("Form", "QtLernMatrix 0.2", None))
         QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.MostrarMem)
-        #~ QtCore.QObject.connect(self.pushButton_3, QtCore.SIGNAL(_fromUtf8("clicked()")), self.GenMem)
+        QtCore.QObject.connect(self.pushButton_3, QtCore.SIGNAL(_fromUtf8("clicked()")), self.CalcPor)
         QtCore.QObject.connect(self.pushButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.GenMem)
-        #~ QtCore.QObject.connect(self.pushButton_4, QtCore.SIGNAL(_fromUtf8("clicked()")), self.GenMem)
+        #~ QtCore.QObject.connect(self.pushButton_4, QtCore.SIGNAL(_fromUtf8("clicked()")), self.Busca)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -146,8 +146,8 @@ class Ui_Form(object):
         self.pushButton.setText(_translate("Form", "Mostrar Memoria", None))
         self.pushButton_2.setText(_translate("Form", "Generar Memoria", None))
     def GenMem(self):
-		entradam = open("memoria.data", "r")
-		memoria = np.array([ map( int, linea.split() ) for linea in entradam ])
+		#~ entradam = open("memoria.data", "r")
+		#~ memoria = np.array([ map( int, linea.split() ) for linea in entradam ])
 		for i in xrange(0, 41):
 		 for j in xrange(0, 15): 
 		  if xy1[i][j] == 1: 
@@ -206,7 +206,131 @@ class Ui_Form(object):
 		print Y
 		self.model = Model()
 		self.tableView.setModel(self.model)
-		       
+    def CalcPor(self):
+		cont = 0
+		cony1 = 0
+		cony2 = 0 
+		cony3 = 0
+		cony4 = 0
+		cony5 = 0
+		cony6 = 0
+		cony7 = 0
+		entradat = open("xy1.data", "r")  
+		for linea in entradat:
+		 db = np.array( [ map( int, linea.split() ) ] ) 
+		 db = db.transpose()
+		 clase = np.dot(memoria,db)
+		 aux= clase.max()
+		 for i in xrange(0, 7):
+		  if clase[i][0] == aux:
+		   clase [i][0] = 1
+		  elif clase[i][0] < aux:
+		   clase [i][0] = 0
+		 clase = clase.transpose()
+		 if np.all(clase == y1) == True:
+		  cont += 1
+		  cony1 += 1
+		entradat = open("xy2.data", "r")  
+		for linea in entradat:
+		 db = np.array( [ map( int, linea.split() ) ] ) 
+		 db = db.transpose()
+		 clase = np.dot(memoria,db)
+		 aux= clase.max()
+		 for i in xrange(0, 7):
+		  if clase[i][0] == aux:
+		   clase [i][0] = 1
+		  elif clase[i][0] < aux:
+		   clase [i][0] = 0
+		 clase = clase.transpose()
+		 if np.all(clase == y2) == True:
+		  cont += 1
+		  cony2 += 1
+		entradat = open("xy3.data", "r")  
+		for linea in entradat:
+		 db = np.array( [ map( int, linea.split() ) ] ) 
+		 db = db.transpose()
+		 clase = np.dot(memoria,db)
+		 aux= clase.max()
+		 for i in xrange(0, 7):
+		  if clase[i][0] == aux:
+		   clase [i][0] = 1
+		  elif clase[i][0] < aux:
+		   clase [i][0] = 0
+		 clase = clase.transpose()
+		 if np.all(clase == y3) == True:
+		  cont += 1
+		  cony3 += 1
+		entradat = open("xy4.data", "r")  
+		for linea in entradat:
+		 db = np.array( [ map( int, linea.split() ) ] ) 
+		 db = db.transpose()
+		 clase = np.dot(memoria,db)
+		 aux= clase.max()
+		 for i in xrange(0, 7):
+		  if clase[i][0] == aux:
+		   clase [i][0] = 1
+		  elif clase[i][0] < aux:
+		   clase [i][0] = 0
+		 clase = clase.transpose()
+		 if np.all(clase == y4) == True:
+		  cont += 1
+		  cony4 += 1  
+		entradat = open("xy5.data", "r")  
+		for linea in entradat:
+		 db = np.array( [ map( int, linea.split() ) ] ) 
+		 db = db.transpose()
+		 clase = np.dot(memoria,db)
+		 aux= clase.max()
+		 for i in xrange(0, 7):
+		  if clase[i][0] == aux:
+		   clase [i][0] = 1
+		  elif clase[i][0] < aux:
+		   clase [i][0] = 0
+		 clase = clase.transpose()
+		 if np.all(clase == y5) == True:
+		  cont += 1
+		  cony5 += 1
+		entradat = open("xy6.data", "r")  
+		for linea in entradat:
+		 db = np.array( [ map( int, linea.split() ) ] ) 
+		 db = db.transpose()
+		 clase = np.dot(memoria,db)
+		 aux= clase.max()
+		 for i in xrange(0, 7):
+		  if clase[i][0] == aux:
+		   clase [i][0] = 1
+		  elif clase[i][0] < aux:
+		   clase [i][0] = 0
+		 clase = clase.transpose()
+		 if np.all(clase == y6) == True:
+		  cont += 1
+		  cony6 += 1
+		entradat = open("xy5.data", "r")  
+		for linea in entradat:
+		 db = np.array( [ map( int, linea.split() ) ] ) 
+		 db = db.transpose()
+		 clase = np.dot(memoria,db)
+		 aux= clase.max()
+		 for i in xrange(0, 7):
+		  if clase[i][0] == aux:
+		   clase [i][0] = 1
+		  elif clase[i][0] < aux:
+		   clase [i][0] = 0
+		 clase = clase.transpose()
+		 if np.all(clase == y7) == True:
+		  cont += 1
+		  cony7 += 1  
+		print cont, cony1, cony2, cony3, cony4, cony5, cony6, cony7
+		self.textBrowser.append("%s %%" % str(cont))       
+		self.textBrowser.append("%s %%" % str(cony1))
+		self.textBrowser.append("%s %%" % str(cony2))
+		self.textBrowser.append("%s %%" % str(cony3))
+		self.textBrowser.append("%s %%" % str(cony4))
+		self.textBrowser.append("%s %%" % str(cony5))
+		self.textBrowser.append("%s %%" % str(cony6))
+		self.textBrowser.append("%s %%" % str(cony7))
+    #~ def Busca(self):
+		
 if __name__ == "__main__":
     import sys;
     app = QtGui.QApplication(sys.argv)
